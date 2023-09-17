@@ -1,10 +1,9 @@
-import { Request, Response } from "express"
+import { type Request, type Response } from 'express';
 
+export const login = (req: Request, res: Response): void => {
+	res.send('HOLA MUNDO');
+};
 
-export const login = (req: Request, res: Response) => {
-    res.send("HOLA MUNDO")
-}
-
-export const generateCode = (req: Request, res: Response) => {
-    res.send("Geneerate login")
-}
+export const generateCode = (req: Request, res: Response): void => {
+	res.send('Geneerate login');
+};
