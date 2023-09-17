@@ -2,4 +2,4 @@ node_modules/
 build/
 dist/
 .eslintrc.js
-.eslintrc.js
+commitlint.config.js
