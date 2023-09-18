@@ -46,10 +46,16 @@ Install dependencies
   pnpm install
 ```
 
+Build project
+
+```bash
+  pnpm build
+```
+
 Start the server
 
 ```bash
-  pnpm dev
+  pnpm start
 ```
 
   

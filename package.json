@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "build": "tsc",
+    "build": "babel src --extensions \".ts,.js\" --out-dir dist --copy-files",
+    "start": "node dist/index.js",
+    "dev": "nodemon -r tsconfig-paths/register src/index.ts",
     "prepare": "husky install",
     "format": "prettier --write .",
     "lint": "eslint .",
@@ -15,11 +16,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.22.15",
+    "@babel/core": "^7.22.20",
+    "@babel/node": "^7.22.19",
+    "@babel/preset-env": "^7.22.20",
+    "@babel/preset-typescript": "^7.22.15",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "@types/express": "^4.17.17",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
+    "babel-plugin-module-resolver": "^5.0.0",
     "conventional-changelog-cli": "^4.1.0",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
@@ -33,6 +40,7 @@
     "nodemon": "^3.0.1",
     "prettier": "^3.0.3",
     "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {

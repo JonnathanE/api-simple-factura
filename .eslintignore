@@ -3,3 +3,4 @@ build/
 dist/
 .eslintrc.js
 commitlint.config.js
+babel.config.js

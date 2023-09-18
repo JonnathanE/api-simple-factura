@@ -13,11 +13,14 @@ async function connectDB(): Promise<undefined> {
 	try {
 		const db = await mongoose.connect(connectionString);
 		if (NODE_ENV !== 'test') {
+			// eslint-disable-next-line no-console
 			console.log('DB is connected to', db.connection.name);
 		} else {
+			// eslint-disable-next-line no-console
 			console.log('DB TEST is connected');
 		}
 	} catch (error) {
+		// eslint-disable-next-line no-console
 		console.error(error);
 	}
 }

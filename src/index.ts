@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import routes from './routes';
+import routes from '@routes/index';
 import connectDB from './db/connect';
 import morgan from 'morgan';
 
@@ -23,5 +23,6 @@ app.use('/', (req, res) => {
 
 // up server
 app.listen(PORT, () => {
+	// eslint-disable-next-line no-console
 	console.log('Server on port: ', PORT);
 });
