@@ -3,6 +3,7 @@ import express from 'express';
 import routes from '@routes/index';
 import connectDB from './db/connect';
 import morgan from 'morgan';
+import cors from 'cors';
 
 const app = express();
 
@@ -14,6 +15,7 @@ const PORT = process.env.PORT ?? 4000;
 
 // middlewares
 app.use(morgan('dev'));
+app.use(cors());
 
 // create routes
 app.use('/api', routes);

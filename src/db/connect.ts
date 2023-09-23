@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+// import User from '@models/user.model';
 
 async function connectDB(): Promise<undefined> {
 	const { DATABASE, DATABASE_TEST, NODE_ENV } = process.env;
@@ -19,6 +20,19 @@ async function connectDB(): Promise<undefined> {
 			// eslint-disable-next-line no-console
 			console.log('DB TEST is connected');
 		}
+
+		// const newUser = new User({
+		// 	firstname: 'Jonnathan',
+		// 	lastname: 'Espinoza',
+		// 	email: 'jonnathan.espinoza@unl.edu.ec',
+		// 	login_code: '123456',
+		// 	roles: {
+		// 		admin: true,
+		// 		seller: true,
+		// 	},
+		// });
+		// console.log(newUser);
+		// await newUser.save();
 	} catch (error) {
 		// eslint-disable-next-line no-console
 		console.error(error);
