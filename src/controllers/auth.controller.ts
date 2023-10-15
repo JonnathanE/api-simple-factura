@@ -1,9 +1,36 @@
 import { type Request, type Response } from 'express';
-import sendEmail from 'src/helpers/mailer';
-import userModel from '@models/user.model';
+import sendEmail from '@helpers/mailer';
+import UserModel from '@models/user.model';
+import jwt from 'jsonwebtoken';
 
-export const login = (req: Request, res: Response): void => {
-	res.send('HOLA MUNDO');
+export const login = async (
+	req: Request,
+	res: Response,
+): Promise<Response<void, Record<string, undefined>>> => {
+	const { email } = req.params;
+	const { code } = req.body;
+
+	const user = await UserModel.findOne({ email, login_code: code });
+
+	if (user == null) {
+		return res.status(400).json({ ok: false, message: 'Código incorrecto' });
+	}
+
+	const token = jwt.sign(
+		{
+			sub: user._id,
+			firstname: user.firstname,
+			lastname: user.lastname,
+			roles: user.roles,
+		},
+		process.env.JWT_SECRET_KEY as string,
+	);
+
+	res.cookie('jwt', token);
+
+	return res
+		.status(200)
+		.json({ ok: true, message: 'Inicio de sesión exitoso' });
 };
 
 export const generateCode = async (
@@ -14,7 +41,7 @@ export const generateCode = async (
 	const { email } = req.params;
 
 	// search user
-	const user = await userModel.findOne({ email });
+	const user = await UserModel.findOne({ email });
 
 	if (user == null) {
 		return res.status(400).json({ ok: false, message: 'Usuario inexistente' });
